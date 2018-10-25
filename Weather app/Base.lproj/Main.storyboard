@@ -91,10 +91,10 @@
                                 <rect key="frame" x="243" y="7" width="116" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Change Location"/>
+                                <connections>
+                                    <segue destination="qRj-L5-uyf" kind="show" id="Tj7-Sa-8my"/>
+                                </connections>
                             </button>
-                            <connections>
-                                <segue destination="qRj-L5-uyf" kind="show" id="xCk-eu-0xl"/>
-                            </connections>
                         </barButtonItem>
                     </navigationItem>
                 </viewController>
