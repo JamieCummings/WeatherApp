@@ -22,6 +22,9 @@ class WeatherDisplayViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+       
+        
+        //when the screen 1st loads, set the default values for the ui
         setupDefaultUI()
         
         let apiKeys = APIKeys()
