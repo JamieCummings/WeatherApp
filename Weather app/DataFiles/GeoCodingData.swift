@@ -9,7 +9,7 @@
 import Foundation
 import SwiftyJSON
 
-class geoCodingData {
+class GeoCodingData {
     // MARK:- Types
     // these are the keys that we will need to get the correct info from the Google Geocoding API
     

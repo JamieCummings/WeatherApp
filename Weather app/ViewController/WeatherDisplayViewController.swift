@@ -27,51 +27,24 @@ class WeatherDisplayViewController: UIViewController {
         //when the screen 1st loads, set the default values for the ui
         setupDefaultUI()
         
-        let apiKeys = APIKeys()
+        let apiManager = APIManager()
         
-        let darkSkyURL = "https://api.darksky.net/forecast/"
-        let darkSkyKey = apiKeys.darkSkyKey
-        let latitude = "37.004842"
-        let longitude = "-85.925876"
-        
-        let url = darkSkyURL + darkSkyKey + "/" + latitude + "," + longitude
-        
-        let request = Alamofire.request(url)
-        // carrying out our request
-        request.responseJSON { response in
-            // switching based on the result of the request 
-            switch response.result {
-            case .success(let value):
-                // if our request succeeds, take the value and convert it into a JSON object
-                let json = JSON(value)
-                let exampleWeatherData = WeatherData(json:json)
-                print (exampleWeatherData?.temperature)
-                print (exampleWeatherData?.highTemperature)
-                print(exampleWeatherData?.lowTemperature)
-                print (exampleWeatherData?.condition.icon)
-                
-                
-                // print out the JSON object
-            case .failure(let error):
+        apiManager.geocode(address: "Glasgow,+Kentucky"){ (data, error) in
+            // if we get back an error
+            if let error = error {
                 print(error.localizedDescription)
+                return
             }
-        }
-        let googleBaseURL = "https://maps.googleapis.com/maps/api/geocode/json?address="
-        let googleRequestURL = googleBaseURL + "Glasgow,+Kentucky" + "&key=" + apiKeys.googleKey
-        let googleRequest = Alamofire.request(googleRequestURL)
-        
-        googleRequest.responseJSON { response in
-            switch response.result {
-            case .success(let value):
-                let json = JSON(value)
-                print(json)
-            case .failure(let error):
-                print(error.localizedDescription)
+            guard let data = data else {
+                return
             }
+            print(data.formattedAddress)
+            print(data.latitude)
+            print(data.longitude)
         }
-        
         
     }
+        
     // this func will give the UI some default whenever we first load the app
     func setupDefaultUI() {
         locationLabel.text = "Emerald City,The Land of Oz"
