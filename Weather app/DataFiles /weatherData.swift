@@ -10,7 +10,9 @@ import Foundation
 import SwiftyJSON
 
 class WeatherData {
+    
     //Mark:- Types
+    
     enum Condition: String {
         case clearDay = "clear-day"
         case clearNight = "clear-night"
@@ -23,9 +25,10 @@ class WeatherData {
         case partlyCloudyDay = "partly-cloudy-day"
         case partlyCloudyNight = "partly-cloudy-night"
         
+        // computed property
         var icon: String{
             switch self{
-                // switch based on the value of the enum
+            // switch based on the value of the enum
             case .clearDay:
                 return "☀️"
             case .clearNight:
@@ -41,7 +44,7 @@ class WeatherData {
             case .fog:
                 return "💨"
             case .cloudy:
-               return "☁️"
+                return "☁️"
             case .partlyCloudyDay:
                 return "🌥"
             case .partlyCloudyNight:
@@ -50,6 +53,7 @@ class WeatherData {
         }
     }
     
+    // these are the keys that we will need to get the correct info from Dark Sky API
     enum WeatherDataKeys: String {
         case currently = "currently"
         case daily = "daily"
@@ -78,7 +82,8 @@ class WeatherData {
         self.lowTemperature = lowTemperature
         self.condition = condition
     }
-    
+    // convenience init is something we use along with a reg init.
+    // failable convenience init for breaking down data from JSON and creating WeatherData
     convenience init?(json:JSON){
         guard let temperature = json[WeatherDataKeys.currently.rawValue][WeatherDataKeys.temperature.rawValue].double else{
             return nil

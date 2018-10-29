@@ -34,7 +34,7 @@ class WeatherDisplayViewController: UIViewController {
         let latitude = "37.004842"
         let longitude = "-85.925876"
         
-        let url = darkSkyKey + darkSkyURL +  "/" + latitude + "," + longitude
+        let url = darkSkyURL + darkSkyKey + "/" + latitude + "," + longitude
         
         let request = Alamofire.request(url)
         // carrying out our request
@@ -44,8 +44,14 @@ class WeatherDisplayViewController: UIViewController {
             case .success(let value):
                 // if our request succeeds, take the value and convert it into a JSON object
                 let json = JSON(value)
+                let exampleWeatherData = WeatherData(json:json)
+                print (exampleWeatherData?.temperature)
+                print (exampleWeatherData?.highTemperature)
+                print(exampleWeatherData?.lowTemperature)
+                print (exampleWeatherData?.condition.icon)
+                
+                
                 // print out the JSON object
-                print(json)
             case .failure(let error):
                 print(error.localizedDescription)
             }
