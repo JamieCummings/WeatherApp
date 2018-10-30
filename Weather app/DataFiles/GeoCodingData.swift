@@ -18,8 +18,8 @@ class GeoCodingData {
         case formattedAddress = "formatted_address"
         case geometry = "geometry"
         case location = "location"
-        case latitude = "latitude"
-        case longitude = "longitude"
+        case latitude = "lat"
+        case longitude = "lng"
     }
     //MARK:- Properties
     

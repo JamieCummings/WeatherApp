@@ -92,7 +92,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Change Location"/>
                                 <connections>
-                                    <segue destination="qRj-L5-uyf" kind="show" id="Tj7-Sa-8my"/>
+                                    <segue destination="qRj-L5-uyf" kind="show" id="JpK-zc-e7e"/>
                                 </connections>
                             </button>
                         </barButtonItem>
@@ -131,10 +131,12 @@
                         <viewLayoutGuide key="safeArea" id="0Oc-Ra-NVK"/>
                     </view>
                     <connections>
-                        <outlet property="locationSearchBar" destination="CCE-8N-zmv" id="0gL-cc-VrJ"/>
+                        <outlet property="locationSearchBar" destination="CCE-8N-zmv" id="diP-gZ-B7c"/>
+                        <segue destination="hay-OJ-y3Z" kind="unwind" identifier="unwindToWeatherDisplay" unwindAction="unwindToWeatherDisplayWithSegue:" id="cxq-Nt-oV4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oK5-83-cuO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="hay-OJ-y3Z" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1862" y="132"/>
         </scene>

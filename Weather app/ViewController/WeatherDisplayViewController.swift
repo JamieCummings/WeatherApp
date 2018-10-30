@@ -19,6 +19,20 @@ class WeatherDisplayViewController: UIViewController {
     @IBOutlet weak var lowTempLabel: UILabel!
     
     
+    var displayWeatherData: WeatherData! {
+        didSet {
+            iconLabel.text = displayWeatherData.condition.icon
+            currentTempLabel.text = "\( displayWeatherData.temperature)º"
+            highTempLabel.text = "\(displayWeatherData.highTemperature)º"
+            lowTempLabel.text = "\(displayWeatherData.lowTemperature)º"
+        }
+    }
+    var displayGeocodingData: GeoCodingData! {
+        didSet{
+            locationLabel.text = displayGeocodingData.formattedAddress
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -27,21 +41,7 @@ class WeatherDisplayViewController: UIViewController {
         //when the screen 1st loads, set the default values for the ui
         setupDefaultUI()
         
-        let apiManager = APIManager()
         
-        apiManager.geocode(address: "Glasgow,+Kentucky"){ (data, error) in
-            // if we get back an error
-            if let error = error {
-                print(error.localizedDescription)
-                return
-            }
-            guard let data = data else {
-                return
-            }
-            print(data.formattedAddress)
-            print(data.latitude)
-            print(data.longitude)
-        }
         
     }
         
@@ -54,6 +54,8 @@ class WeatherDisplayViewController: UIViewController {
         highTempLabel.text = "85º"
     }
     
+    // unwind action so that we can unwind to this screen after retrieving data
+    @IBAction func unwindToWeatherDisplay(segue: UIStoryboardSegue) { }
     
 }
 
